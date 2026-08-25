@@ -1,3 +1,688 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0a0a0c" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+
+  <title>Leonardo Forconi — DevOps &amp; Cyber Security Engineer</title>
+  <meta name="description" content="DevOps &amp; Cyber Security Engineer with 10+ years of experience designing and securing large-scale critical IT infrastructure. Kubernetes, eBPF, Zero-Trust, IaC, PCI-DSS.">
+  <meta name="author" content="Leonardo Forconi">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://for1337.github.io/">
+  <meta property="og:title" content="Leonardo Forconi — DevOps &amp; Cyber Security Engineer">
+  <meta property="og:description" content="DevOps &amp; Cyber Security Engineer. 10+ years securing critical infrastructure, building resilient systems, automating the complex.">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Leonardo Forconi — DevOps &amp; Cyber Security Engineer">
+  <meta name="twitter:description" content="DevOps &amp; Cyber Security Engineer. 10+ years securing critical infrastructure, building resilient systems, automating the complex.">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0c'/%3E%3Cpath d='M9 9 L9 23 L13 23 L13 14 L19 23 L23 23 L23 9 L19 9 L19 18 L13 9 Z' fill='%233b82f6'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%230a0a0c'/%3E%3Cpath d='M50 50 L50 130 L72 130 L72 82 L108 130 L130 130 L130 50 L108 50 L108 98 L72 50 Z' fill='%233b82f6'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Leonardo Forconi",
+    "url": "https://for1337.github.io",
+    "jobTitle": "DevOps & Cyber Security Engineer",
+    "knowsAbout": ["DevOps", "Cyber Security", "Kubernetes", "eBPF", "Terraform", "Ansible", "Zero-Trust", "PCI-DSS", "Infrastructure as Code", ".NET", "C#"],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Leonardo S.p.A."
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Florence",
+      "addressCountry": "IT"
+    },
+    "sameAs": [
+      "https://github.com/for1337",
+      "https://www.linkedin.com/in/forconi",
+      "https://leonardoforconi.com"
+    ]
+  }
+  </script>
+</head>
 <body>
-  test
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="Leonardo Forconi — home">
+        <span class="brand-mark" aria-hidden="true">LF</span>
+        <span class="brand-text">
+          <span class="brand-name">Leonardo Forconi</span>
+          <span class="brand-role">DevOps &amp; Cyber Security</span>
+        </span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn theme-toggle" type="button" id="theme-toggle" aria-label="Toggle color theme" title="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="icon-btn nav-toggle" type="button" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav" hidden>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">
+            <span class="status-dot" aria-hidden="true"></span>
+            Available for consulting · Florence, Italy · CET
+          </p>
+          <h1 id="hero-title">
+            DevOps &amp; <span class="accent">Cyber Security</span> Engineer building secure, resilient infrastructure.
+          </h1>
+          <p class="hero-lede">
+            10+ years designing and operating large-scale critical IT systems. Specialized in
+            air-gapped environments, <span class="hl">Zero-Trust</span> architecture, Kubernetes, eBPF
+            and Infrastructure as Code. I make complex systems boring on purpose.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#projects">
+              View projects
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#contact">Get in touch</a>
+          </div>
+          <ul class="hero-meta" role="list">
+            <li><span class="meta-num">10+</span><span class="meta-label">years in critical infra</span></li>
+            <li><span class="meta-num">PCI-DSS L1</span><span class="meta-label">certification lead</span></li>
+            <li><span class="meta-num">0 → 1</span><span class="meta-label">infrastructure migration</span></li>
+          </ul>
+        </div>
+        <aside class="hero-card" aria-label="Identity card">
+          <div class="card-head">
+            <span class="card-tag">~/forconi</span>
+            <span class="card-status">online</span>
+          </div>
+          <div class="card-body">
+            <dl>
+              <div><dt>role</dt><dd>DevOps &amp; Cyber Security Engineer</dd></div>
+              <div><dt>focus</dt><dd>Zero-Trust · K8s · eBPF · IaC</dd></div>
+              <div><dt>at</dt><dd>Leonardo S.p.A.</dd></div>
+              <div><dt>since</dt><dd>2025</dd></div>
+              <div><dt>based</dt><dd>Florence, IT</dd></div>
+            </dl>
+          </div>
+          <div class="card-foot">
+            <code>$ kubectl get nodes</code>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- LOGOS / STACK -->
+    <section class="logo-strip" aria-label="Selected stack">
+      <div class="container">
+        <p class="strip-label">Operating daily with</p>
+        <ul class="logo-list" role="list">
+          <li>Kubernetes</li>
+          <li>Terraform</li>
+          <li>Ansible</li>
+          <li>GitLab CI</li>
+          <li>Cilium / eBPF</li>
+          <li>Prometheus</li>
+          <li>HAProxy</li>
+          <li>Palo Alto</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-eyebrow">01 — About</p>
+          <h2 id="about-title" class="section-title">A systems engineer who treats security as a feature, not an afterthought.</h2>
+        </header>
+        <div class="prose two-col">
+          <p>
+            I'm Leonardo Forconi, a DevOps and Cyber Security engineer based in Florence, Italy.
+            I work where availability, confidentiality and regulatory compliance collide — critical
+            infrastructures, payment platforms, air-gapped environments — and I help engineering
+            teams ship safely in those constrained spaces.
+          </p>
+          <p>
+            My background spans system administration, network engineering, software development
+            (<span class="hl">C# / .NET</span>) and security operations. I have led PCI-DSS Level 1
+            certification, migrated legacy estates to Infrastructure as Code, designed CI/CD
+            pipelines for distributed systems, and built applications that run in fully isolated
+            environments with no administrative rights.
+          </p>
+          <p>
+            Today I focus on Kubernetes (K8s / K3s), eBPF-based observability and security
+            (Cilium, Tetragon), and the boring, repeatable workflows (SOPs) that keep complex
+            systems running predictably. I care about <em>least privilege</em>, auditability and
+            making the secure path the easy path.
+          </p>
+          <p>
+            Outside of work, I tinker with Kubernetes deployments, contribute to open source, and
+            keep a personal blog at <a href="https://leonardoforconi.com" target="_blank" rel="noopener">leonardoforconi.com</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section section-alt" id="experience" aria-labelledby="exp-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-eyebrow">02 — Experience</p>
+          <h2 id="exp-title" class="section-title">A decade of operational depth, from helpdesk to critical infrastructure.</h2>
+        </header>
+        <ol class="timeline" role="list">
+          <li class="timeline-item">
+            <div class="tl-marker" aria-hidden="true">
+              <span class="tl-year">2025 →</span>
+            </div>
+            <div class="tl-content">
+              <p class="tl-role">Cyber Security Engineer</p>
+              <p class="tl-org">Leonardo S.p.A. <span class="tl-loc">· Florence, IT</span></p>
+              <ul>
+                <li>Protection of sensitive corporate assets: vulnerability mitigation, security patching, configuration hardening.</li>
+                <li>Standardized cross-departmental workflows through a shared knowledge base, improving operational consistency.</li>
+                <li>Developed <strong>.NET / C# applications in air-gapped environments</strong>, running under least-privilege without administrative rights, in fully isolated infrastructures.</li>
+                <li>Technical support and troubleshooting for development teams operating inside segregated environments, ensuring business continuity under strict access constraints.</li>
+                <li>Proactive identification of critical vulnerabilities in Zero-Trust environments, producing detailed technical risk documentation.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <div class="tl-marker" aria-hidden="true">
+              <span class="tl-year">2024 → 2025</span>
+            </div>
+            <div class="tl-content">
+              <p class="tl-role">DevOps Engineer</p>
+              <p class="tl-org">Cespro</p>
+              <ul>
+                <li>Designed and shipped the <strong>CI/CD infrastructure</strong> for application deployment across distributed systems.</li>
+                <li>Developed internal applications in <strong>.NET C#</strong>.</li>
+                <li>Managed cloud environments and the related service catalog.</li>
+                <li>Served as Cyber Security lead for the engineering team.</li>
+                <li>Introduced separate monitoring stacks for corporate and production environments.</li>
+                <li>Led the migration of the estate toward a full <strong>Infrastructure as Code (IaC)</strong> model.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <div class="tl-marker" aria-hidden="true">
+              <span class="tl-year">2021 → 2024</span>
+            </div>
+            <div class="tl-content">
+              <p class="tl-role">System Administrator</p>
+              <p class="tl-org">QNT Simple Booking (Zucchetti Group)</p>
+              <ul>
+                <li>Created and maintained SOPs (Standard Operating Procedures) to simplify routine operations.</li>
+                <li>Owned backup, disaster recovery and data restoration procedures end-to-end.</li>
+                <li>Partnered with the development team to provide a stable, scalable development environment.</li>
+                <li>Led the hardware and software procurement decision process.</li>
+                <li>Monitored and maintained systems to guarantee security and high availability of services.</li>
+                <li><strong>Responsible for PCI-DSS Level 1 certification.</strong></li>
+                <li>Coordinated with foreign resellers worldwide to resolve SaaS delivery issues.</li>
+                <li>Actively tracked the technology landscape to identify innovations worth adopting.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="timeline-item">
+            <div class="tl-marker" aria-hidden="true">
+              <span class="tl-year">2014 → 2021</span>
+            </div>
+            <div class="tl-content">
+              <p class="tl-role">System Administrator</p>
+              <p class="tl-org">Linea Ufficio 2</p>
+              <ul>
+                <li>Technical support and troubleshooting for hardware, software and networks.</li>
+                <li>Participated in hardware and software procurement decisions.</li>
+                <li>Installation, configuration and maintenance of servers and workstations.</li>
+                <li>Configuration and administration of LAN and WAN networks.</li>
+                <li>Developed custom websites for multiple clients.</li>
+                <li>Built middleware: connectors, ETL pipelines, ad-hoc integrations.</li>
+                <li>Data recovery from damaged or corrupted devices.</li>
+                <li>Designed tailored backup systems for each customer environment.</li>
+                <li>Consulted on the company's integration into Industry 4.0.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-eyebrow">03 — Skills</p>
+          <h2 id="skills-title" class="section-title">A toolbox tuned for production, not for résumés.</h2>
+        </header>
+
+        <div class="skill-grid">
+          <article class="skill-card">
+            <h3>Container &amp; Orchestration</h3>
+            <ul class="chip-list" role="list">
+              <li>Kubernetes (K8s)</li>
+              <li>K3s</li>
+              <li>Helm</li>
+              <li>Docker</li>
+              <li>Podman</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <h3>Infrastructure as Code</h3>
+            <ul class="chip-list" role="list">
+              <li>Terraform</li>
+              <li>OpenTofu</li>
+              <li>Ansible</li>
+              <li>SaltStack</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <h3>CI/CD &amp; GitOps</h3>
+            <ul class="chip-list" role="list">
+              <li>GitLab</li>
+              <li>GitHub Actions</li>
+              <li>Bitbucket</li>
+              <li>Jenkins</li>
+              <li>ArgoCD</li>
+              <li>SonarQube</li>
+              <li>Sonatype Nexus</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <h3>Networking</h3>
+            <ul class="chip-list" role="list">
+              <li>TCP/IP · DNS · DHCP</li>
+              <li>VLAN · VPN (NAT-T)</li>
+              <li>Cilium (eBPF)</li>
+              <li>pfSense · Palo Alto · Cyberoam</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <h3>Cyber Security</h3>
+            <ul class="chip-list" role="list">
+              <li>Zero-Trust architecture</li>
+              <li>Air-gapped environments</li>
+              <li>PCI-DSS Level 1</li>
+              <li>Falco · Tetragon (eBPF)</li>
+              <li>Greenbone · Kali</li>
+              <li>AlienVault USM</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <h3>Observability</h3>
+            <ul class="chip-list" role="list">
+              <li>Prometheus</li>
+              <li>Grafana</li>
+              <li>Loki · ELK</li>
+              <li>Hubble (Cilium)</li>
+              <li>Zabbix · New Relic</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <h3>Load Balancing &amp; Edge</h3>
+            <ul class="chip-list" role="list">
+              <li>HAProxy</li>
+              <li>Traefik</li>
+              <li>Caddy</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <h3>Scripting &amp; Programming</h3>
+            <ul class="chip-list" role="list">
+              <li>C# · VB.NET · ASP.NET</li>
+              <li>PowerShell · Bash · Batch</li>
+              <li>MQL4 · MQL5</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <h3>Databases</h3>
+            <ul class="chip-list" role="list">
+              <li>PostgreSQL · MySQL · MS SQL</li>
+              <li>Redis · CockroachDB</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <h3>Virtualization &amp; HA</h3>
+            <ul class="chip-list" role="list">
+              <li>VMware · Hyper-V · Proxmox</li>
+              <li>OpenStack</li>
+              <li>NAS · SAN · RAID · Cluster</li>
+              <li>S3-compatible storage</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <h3>Operating Systems</h3>
+            <ul class="chip-list" role="list">
+              <li>GNU/Linux</li>
+              <li>Windows Server</li>
+              <li>macOS · iOS</li>
+              <li>Android</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <h3>Web &amp; Platforms</h3>
+            <ul class="chip-list" role="list">
+              <li>HTML · JavaScript · Bootstrap</li>
+              <li>WordPress · Directus</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section section-alt" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-eyebrow">04 — Services</p>
+          <h2 id="services-title" class="section-title">What I can do for your team.</h2>
+        </header>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.2"/><rect x="14" y="3" width="7" height="7" rx="1.2"/><rect x="3" y="14" width="7" height="7" rx="1.2"/><rect x="14" y="14" width="7" height="7" rx="1.2"/></svg>
+            </div>
+            <h3>Infrastructure &amp; Platform</h3>
+            <p>Design and operate the platform your teams run on. Kubernetes clusters (K8s / K3s), infrastructure as code with Terraform and Ansible, CI/CD pipelines, and high-availability topologies — built to be reproducible and auditable.</p>
+            <ul class="service-tags" role="list">
+              <li>IaC</li><li>CI/CD</li><li>HA</li><li>GitOps</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+            </div>
+            <h3>Observability &amp; Reliability</h3>
+            <p>Make invisible failure visible. I implement end-to-end observability stacks (Prometheus, Grafana, Loki, Hubble), define SLOs and alerting strategies that wake you up only when it matters, and design runbooks that turn incidents into SOPs.</p>
+            <ul class="service-tags" role="list">
+              <li>Prometheus</li><li>Grafana</li><li>SLO</li><li>Runbooks</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <h3>Cyber Security &amp; Compliance</h3>
+            <p>Security designed in, not bolted on. Zero-Trust architecture, vulnerability management, hardening of air-gapped environments, eBPF-based runtime security (Falco, Tetragon) and hands-on support for audits including PCI-DSS Level 1.</p>
+            <ul class="service-tags" role="list">
+              <li>Zero-Trust</li><li>PCI-DSS</li><li>eBPF</li><li>Hardening</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3>Software &amp; Tooling</h3>
+            <p>Internal tools and middleware that pay for themselves. .NET / C# applications, PowerShell and Bash automation, custom connectors and ETL jobs. Built to be small, observable, and run with the least privilege they actually need.</p>
+            <ul class="service-tags" role="list">
+              <li>.NET</li><li>C#</li><li>Automation</li><li>ETL</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-eyebrow">05 — Projects</p>
+          <h2 id="projects-title" class="section-title">Open source &amp; personal work on GitHub.</h2>
+          <p class="section-sub">A selection of public repositories. See all of them on <a href="https://github.com/for1337?tab=repositories" target="_blank" rel="noopener">github.com/for1337</a>.</p>
+        </header>
+
+        <ul class="project-grid" role="list">
+          <li class="project-card">
+            <div class="project-head">
+              <span class="project-lang" style="--lang:#3b82f6">Android</span>
+              <span class="project-meta">2025</span>
+            </div>
+            <h3><a href="https://github.com/for1337/curiofauna-public" target="_blank" rel="noopener">curiofauna-public</a></h3>
+            <p>Android client for the Curiofauna project — a curated animal-facts experience with offline-first sync, image-rich cards and a clean reading flow.</p>
+            <ul class="project-tags" role="list"><li>Kotlin</li><li>Compose</li><li>Coil</li></ul>
+          </li>
+
+          <li class="project-card">
+            <div class="project-head">
+              <span class="project-lang" style="--lang:#3178c6">TypeScript</span>
+              <span class="project-meta">2026 · fork</span>
+            </div>
+            <h3><a href="https://github.com/for1337/mercury-agent" target="_blank" rel="noopener">mercury-agent</a></h3>
+            <p>Soul-driven AI agent with permission-hardened tools, token budgets, and multi-channel access. Runs 24/7 from CLI or Telegram — a study in least-privilege agent design.</p>
+            <ul class="project-tags" role="list"><li>AI agents</li><li>Permissions</li><li>Node</li></ul>
+          </li>
+
+          <li class="project-card">
+            <div class="project-head">
+              <span class="project-lang" style="--lang:#89e051">Shell</span>
+              <span class="project-meta">2026</span>
+            </div>
+            <h3><a href="https://github.com/for1337/claude_code_cli_in_container" target="_blank" rel="noopener">claude_code_cli_in_container</a></h3>
+            <p>Containerized Claude Code CLI with reproducible dependencies, network isolation and a defined surface area. Designed for safe execution against third-party code.</p>
+            <ul class="project-tags" role="list"><li>Containers</li><li>DevSandbox</li><li>Linux</li></ul>
+          </li>
+
+          <li class="project-card">
+            <div class="project-head">
+              <span class="project-lang" style="--lang:#89e051">Shell</span>
+              <span class="project-meta">2024 · ★4</span>
+            </div>
+            <h3><a href="https://github.com/for1337/netbird_selfhosted_backup_and_restore" target="_blank" rel="noopener">netbird_selfhosted_backup_and_restore</a></h3>
+            <p>Backup and restore script for a self-hosted NetBird deployment. Captures state, keys and configuration, restores cleanly. The kind of boring utility every self-hosted stack needs.</p>
+            <ul class="project-tags" role="list"><li>NetBird</li><li>Backup</li><li>Bash</li></ul>
+          </li>
+
+          <li class="project-card">
+            <div class="project-head">
+              <span class="project-lang" style="--lang:#89e051">Shell</span>
+              <span class="project-meta">2024</span>
+            </div>
+            <h3><a href="https://github.com/for1337/xmrigScript" target="_blank" rel="noopener">xmrigScript</a></h3>
+            <p>One-shot download-and-start script for XMRig. Used as a learning exercise in process supervision, resource limits and container-friendly runtime patterns.</p>
+            <ul class="project-tags" role="list"><li>Bash</li><li>Automation</li></ul>
+          </li>
+
+          <li class="project-card">
+            <div class="project-head">
+              <span class="project-lang" style="--lang:#3178c6">Config</span>
+              <span class="project-meta">2023</span>
+            </div>
+            <h3><a href="https://github.com/for1337/espocrm-yaml" target="_blank" rel="noopener">espocrm-yaml</a></h3>
+            <p>Kubernetes manifests for deploying EspoCRM. ConfigMaps, Services, Ingress, persistent storage — a reference for running stateful web apps on K8s.</p>
+            <ul class="project-tags" role="list"><li>Kubernetes</li><li>YAML</li><li>CRM</li></ul>
+          </li>
+
+          <li class="project-card">
+            <div class="project-head">
+              <span class="project-lang" style="--lang:#cb3837">Lua / Config</span>
+              <span class="project-meta">2023</span>
+            </div>
+            <h3><a href="https://github.com/for1337/haproxy" target="_blank" rel="noopener">haproxy</a></h3>
+            <p>Production-grade HAProxy configuration snippets. TLS termination, ACLs, stick tables, health checks — battle-tested patterns for edge load balancing.</p>
+            <ul class="project-tags" role="list"><li>HAProxy</li><li>TLS</li><li>Edge</li></ul>
+          </li>
+
+          <li class="project-card">
+            <div class="project-head">
+              <span class="project-lang" style="--lang:#e34c26">HTML</span>
+              <span class="project-meta">2023</span>
+            </div>
+            <h3><a href="https://github.com/for1337/CopyPaste-on-Base64" target="_blank" rel="noopener">CopyPaste-on-Base64</a></h3>
+            <p>Small browser utility for encoding and decoding Base64 — built as a no-tracking, offline-first alternative to online converters. Useful in restricted environments.</p>
+            <ul class="project-tags" role="list"><li>JS</li><li>Offline</li></ul>
+          </li>
+        </ul>
+
+        <p class="projects-foot">
+          <a class="btn btn-ghost" href="https://github.com/for1337?tab=repositories" target="_blank" rel="noopener">
+            All repositories on GitHub
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- EDUCATION + LANGUAGES -->
+    <section class="section section-alt" id="education" aria-labelledby="edu-title">
+      <div class="container two-col-section">
+        <div>
+          <header class="section-head">
+            <p class="section-eyebrow">06 — Education</p>
+            <h2 id="edu-title" class="section-title">Always learning.</h2>
+          </header>
+          <ul class="edu-list" role="list">
+            <li>
+              <p class="edu-period">2026 → Present</p>
+              <p class="edu-degree">BSc in Computer Engineering</p>
+              <p class="edu-school">Universitas Mercatorum, Italy</p>
+              <p class="edu-note">In progress.</p>
+            </li>
+            <li>
+              <p class="edu-period">2011</p>
+              <p class="edu-degree">High School Diploma in Agriculture and Environmental Studies</p>
+              <p class="edu-school">Agricultural Institute for Agriculture and Environment</p>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <header class="section-head">
+            <p class="section-eyebrow">07 — Languages</p>
+            <h2 class="section-title">Working languages.</h2>
+          </header>
+          <ul class="lang-list" role="list">
+            <li>
+              <span class="lang-name">Italian</span>
+              <span class="lang-level">Native</span>
+              <span class="lang-bar" aria-hidden="true"><span style="--w:100%"></span></span>
+            </li>
+            <li>
+              <span class="lang-name">English</span>
+              <span class="lang-level">Upper-Intermediate (B2)</span>
+              <span class="lang-bar" aria-hidden="true"><span style="--w:80%"></span></span>
+            </li>
+            <li>
+              <span class="lang-name">Portuguese</span>
+              <span class="lang-level">A2</span>
+              <span class="lang-bar" aria-hidden="true"><span style="--w:30%"></span></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section-contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-inner">
+        <header class="section-head">
+          <p class="section-eyebrow">08 — Contact</p>
+          <h2 id="contact-title" class="section-title">Let's build something resilient.</h2>
+          <p class="section-sub">For consulting, infrastructure audits, or a conversation about Zero-Trust, Kubernetes, or eBPF — the easiest way to reach me is email.</p>
+        </header>
+
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:mail@leonardoforconi.com">
+            <div class="contact-label">Email</div>
+            <div class="contact-value">mail@leonardoforconi.com</div>
+          </a>
+          <a class="contact-card" href="tel:+393396250628">
+            <div class="contact-label">Phone</div>
+            <div class="contact-value">(+39) 339 625 0 628</div>
+          </a>
+          <a class="contact-card" href="https://www.linkedin.com/in/forconi" target="_blank" rel="noopener">
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-value">linkedin.com/in/forconi</div>
+          </a>
+          <a class="contact-card" href="https://github.com/for1337" target="_blank" rel="noopener">
+            <div class="contact-label">GitHub</div>
+            <div class="contact-value">github.com/for1337</div>
+          </a>
+          <a class="contact-card" href="https://leonardoforconi.com" target="_blank" rel="noopener">
+            <div class="contact-label">Personal blog</div>
+            <div class="contact-value">leonardoforconi.com</div>
+          </a>
+          <div class="contact-card contact-static">
+            <div class="contact-label">Based in</div>
+            <div class="contact-value">Florence, Italy · CET</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">© <span id="year"></span> Leonardo Forconi · Built in Florence, deployed everywhere.</p>
+      <p class="footer-meta">
+        <a href="https://github.com/for1337/for1337.github.io" target="_blank" rel="noopener">Source</a>
+        <span aria-hidden="true">·</span>
+        <a href="#top">Back to top ↑</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
 </body>
+</html>
