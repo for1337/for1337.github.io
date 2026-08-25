@@ -80,8 +80,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100dvh;
+  width: 100%;
+  max-width: 100vw;
   overflow-x: hidden;
 }
+html { overflow-x: hidden; scrollbar-gutter: stable both-edges; }
 
 ::selection { background: var(--accent); color: #fff; }
 
@@ -234,6 +237,61 @@ code, pre { font-family: var(--font-mono); }
   .topbar-center { display: none; }
   .topbar-inner { grid-template-columns: auto 1fr; }
   .topbar-inner > .topbar-right { justify-content: flex-end; }
+
+  /* Asymmetric 12-col grids become single-column below 720 so
+     the large column gaps (24-56px) don't blow out the viewport. */
+  .dossier-grid { display: block; }
+  .dossier-grid > * { margin-bottom: 28px; }
+  .dossier-grid > *:last-child { margin-bottom: 0; }
+  .observe-grid { display: block; }
+  .observe-grid > * { margin-bottom: 24px; }
+  .observe-grid > *:last-child { margin-bottom: 0; }
+  .scope-grid { display: block; }
+  .scope-grid > * { margin-bottom: 32px; }
+  .scope-grid > *:last-child { margin-bottom: 0; }
+  .file-grid { display: block; }
+  .file-grid > * { margin-bottom: 40px; }
+  .file-grid > *:last-child { margin-bottom: 0; }
+  .repos-table { min-width: 520px; }
+
+  /* Grid items default to min-width:auto, which means they refuse
+     to shrink below the widest inline element. Forcing min-width:0
+     lets long words break to the next line on narrow viewports. */
+  .prose-main, .marginalia, .dossier-quote, .dossier-stamps,
+  .dossier-id, .scope-block, .file-block, .log-body,
+  .channel, .lede, .breadCrumb, .breadcrumb,
+  .repos-table td, .repos-table th, .node-graph, .tree {
+    min-width: 0;
+  }
+
+  /* Allow long URLs / compound tokens to wrap on narrow screens. */
+  .prose-main p, .prose-main .lede, .marginalia p,
+  .scope-block p, .file-dl, .log-bullets, .log-org, .log-loc,
+  .log-role, .channels-note, .breadCrumb, .breadcrumb,
+  .breadCrumb .bc-path, .breadcrumb .bc-path {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Tree output: less internal padding so the box fits the screen. */
+  .tree { padding: 24px 18px; font-size: 12.5px; }
+
+  /* Breadcrumb wraps to a second line on narrow screens. */
+  .breadcrumb { flex-wrap: wrap; row-gap: 6px; }
+  .bc-rev { width: 100%; margin-left: 0; }
+
+  /* Repos table: keep horizontal scroll but reduce its min-width. */
+  .repos-table { min-width: 520px; }
+
+
+  /* Pull quote no longer caps at 820px on narrow viewports. */
+  .dossier-quote { max-width: 100%; }
+
+  /* Handles stack with a bit more breathing room. */
+  .handles { gap: 8px; }
+
+  /* Channels list shrinks spacing. */
+  .channels-note { font-size: 1.25rem; }
 }
 
 /* ---------------------------------------------------------------- 5. SECTION SCAFFOLDING */
@@ -1127,11 +1185,95 @@ code, pre { font-family: var(--font-mono); }
   :root { --margin: 20px; }
   .gutter { left: 24px; }
   .topbar { height: 52px; }
-  .display-name { font-size: clamp(2.8rem, 13vw, 4.2rem); }
+  .topbar-stamp { font-size: 10px; padding: 3px 7px; }
+  #clock { font-size: 10px; letter-spacing: 0.08em; }
+  .display-name { font-size: clamp(2.4rem, 12vw, 3.2rem); }
   .section-marker { font-size: 12px; }
   .repos-table { font-size: 12px; }
   .index-btn { bottom: 16px; right: 16px; }
   .index-inner { padding: 24px 24px 32px; }
+
+  /* Slightly smaller base font so longer lines fit comfortably. */
+  body { font-size: 15px; }
+  .prose-main p { font-size: 1rem; }
+  .prose-main .lede { font-size: 1.2rem; }
+  .log-bullets { font-size: 0.92rem; }
+  .scope-block p { font-size: 0.95rem; }
+  .marginalia p { font-size: 0.88rem; }
+  .channels-note { font-size: 1.15rem; }
+
+  /* ID grid (BASED/TENURE/AT/SINCE) drops to a single column. */
+  .id-grid { grid-template-columns: 1fr; gap: 12px 0; }
+
+  /* Stamps get slightly smaller. */
+  .stamp { font-size: 12px; padding: 8px 11px; }
+  .stamp-2 { font-size: 10px; padding: 6px 9px; }
+
+  /* Scope blocks keep their horizontal rules but trim vertical padding. */
+  .scope-block { padding: 24px 0; }
+  .scope-h { font-size: 1.3rem; }
+
+  /* Channel rows compress a bit. */
+  .channel { grid-template-columns: 30px 1fr; gap: 12px; padding: 14px 0; }
+  .ch-num { font-size: 11px; }
+  .ch-url { padding-left: 42px; font-size: 11px; }
+
+  /* Log entries: bullets stay readable. */
+  .log-role { font-size: 1.15rem; }
+
+  /* Tree compresses further. */
+  .tree { padding: 18px 14px; font-size: 11.5px; line-height: 1.7; }
+
+  /* Repos table: smaller still. */
+  .repos-table { min-width: 460px; font-size: 11.5px; }
+}
+
+@media (max-width: 480px) {
+  :root { --margin: 16px; }
+  body { font-size: 14px; }
+  .gutter { left: 18px; }
+  .dossier { padding: 48px 0 64px; }
+  .section { padding: 56px 0; }
+  .display-name { font-size: clamp(2.1rem, 11vw, 2.6rem); }
+  .section-marker { gap: 12px; margin-bottom: 40px; }
+  .breadcrumb { font-size: 11px; margin-bottom: 24px; }
+
+  /* On narrow viewports the only way to keep long sentences readable
+     without overflowing the container is to break words aggressively
+     and shrink the base size. Newsreader in particular runs slightly
+     wider than Inter, so we dial both axes down at once. */
+  .prose-main p, .prose-main .lede, .marginalia p,
+  .scope-block p, .log-bullets, .log-org, .log-loc {
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+  .prose-main p { font-size: 0.85rem; line-height: 1.65; }
+  .prose-main .lede { font-size: 1.05rem; }
+  .log-bullets { font-size: 0.82rem; }
+  .log-bullets strong { word-break: keep-all; }
+  .scope-block p { font-size: 0.88rem; }
+  .marginalia p { font-size: 0.8rem; }
+  .channels-note { font-size: 1.05rem; }
+
+  /* On the smallest screens, breadcrumb + rev stack tighter. */
+  .tree { padding: 14px 12px; font-size: 10.5px; line-height: 1.65; }
+  .repos-table { min-width: 420px; font-size: 11px; }
+  .repos-table .col-stars, .repos-table .col-year { font-size: 10.5px; }
+
+  .channel { grid-template-columns: 24px 1fr; gap: 10px; padding: 12px 0; }
+  .ch-num { font-size: 10.5px; }
+  .ch-url { padding-left: 34px; font-size: 10.5px; }
+
+  .dossier-quote p { font-size: 1.05rem; line-height: 1.4; }
+  .prose-main .lede { font-size: 1.2rem; }
+
+  .stamp { font-size: 11px; padding: 7px 10px; }
+  .stamp-2 { font-size: 9.5px; padding: 5px 8px; margin-left: 16px; }
+
+  .index-btn { bottom: 12px; right: 12px; }
+  .index-btn .idx-tag { font-size: 10px; padding: 8px 10px; }
+  .progress-rail { right: 4px; }
 }
 
 /* ---------------------------------------------------------------- 18. PRINT */
