@@ -29,7 +29,7 @@ Live: **https://for1337.github.io**
 3. **Experience** — full timeline (Leonardo S.p.A. → Cespro → QNT Simple Booking → Linea Ufficio 2).
 4. **Skills** — 12 grouped categories (Kubernetes, IaC, Cyber Security, …).
 5. **Services** — what I can do for a team (platform, observability, security, software).
-6. **Projects** — public GitHub repos (curiofauna, netbird backup, mercury-agent, …).
+6. **Projects** — public GitHub repos (netbird backup, mercury-agent, …).
 7. **Education &amp; Languages** — BSc in progress + working languages.
 8. **Contact** — email, phone, LinkedIn, GitHub, personal blog.
 
