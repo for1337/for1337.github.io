@@ -1,46 +1,64 @@
 # for1337.github.io
 
-Personal site for **Leonardo Forconi** — DevOps &amp; Cyber Security Engineer.
+Operational dossier for **Leonardo Forconi** — DevOps & Cyber Security Engineer.
 
 Live: **https://for1337.github.io**
 
+The site is structured as a dossier / field manual rather than a portfolio:
+stamped headers, breadcrumb file paths, marginalia, a directory tree, a
+repos table. No CTA buttons, no contact form, no email or phone — by
+design.
+
 ## Stack
 
-- Pure HTML, CSS, and vanilla JavaScript — no build step.
+- Pure HTML, CSS, and vanilla JavaScript. No build step, no framework.
 - Dark by default with a light theme toggle (saved in `localStorage`).
-- Self-hosted fonts via Google Fonts (Inter + JetBrains Mono).
-- Designed to be accessible, responsive, and print-friendly.
+- Three typefaces: **Newsreader** (editorial serif, display),
+  **Inter** (body), **JetBrains Mono** (metadata, file paths, tree).
 
 ## Structure
 
 ```
 .
-├── index.html              # single-page site
+├── index.html              27142 bytes  — 8 sections
 ├── assets/
-│   ├── css/styles.css      # all styles, dark + light theme
-│   └── js/main.js          # theme toggle, mobile nav, scroll reveal
+│   ├── css/styles.css      27291 bytes  — dossier design system
+│   └── js/main.js           4192 bytes  — theme, clock, index, reveal
 └── README.md
 ```
 
 ## Sections
 
-1. **Hero** — role, tagline, identity card with live status.
-2. **About** — professional summary translated from the CV.
-3. **Experience** — full timeline (Leonardo S.p.A. → Cespro → QNT Simple Booking → Linea Ufficio 2).
-4. **Skills** — 12 grouped categories (Kubernetes, IaC, Cyber Security, …).
-5. **Services** — what I can do for a team (platform, observability, security, software).
-6. **Projects** — public GitHub repos (netbird backup, mercury-agent, …).
-7. **Education &amp; Languages** — BSc in progress + working languages.
-8. **Contact** — email, phone, LinkedIn, GitHub, personal blog.
+1. **/dossier/** — cover page: name, role, ID grid, handles, axiom quote
+2. **/observe/** — about, with marginalia annotations
+3. **/operate/** — experience log (2025+ down to 2014), with git-graph motif
+4. **/toolkit/** — `tree`-style skills directory
+5. **/scope/** — 4 service areas, asymmetric two-column layout
+6. **/repos/** — table of public repos (7 entries)
+7. **/file/** — education + languages
+8. **/channels/** — GitHub, LinkedIn, blog (no email, no phone)
+
+## Design system
+
+- **Background**: near-black `#0c0a09` (warm, not pure black).
+- **Accent**: signal red `#ff3b30`. Used sparingly — only for stamps,
+  redacted-bar reveals, status dots, section verbs, ID highlights.
+- **Typography**: Newsreader (italic) for display names and pull quotes,
+  Inter for body, JetBrains Mono for every file path, timestamp,
+  status indicator, and metadata label.
+- **Layout**: 12-column asymmetric grid. Stamps in cols 1–3, name in
+  cols 4–12, prose in cols 3–9, marginalia in cols 10–12, repos table
+  full-width, etc. No two sections share the same column placement.
+- **Motifs**: redacted bars that slide off on hover to reveal
+  the underlying handle; rubber-stamp rotated text; breadcrumb file
+  paths at the top of every section; section markers `02 /observe/`
+  with the verb in red.
 
 ## Local preview
 
-Open `index.html` directly in a browser, or:
-
 ```bash
-# Python 3
 python -m http.server 8000
-# Node
+# or
 npx serve .
 ```
 
@@ -48,10 +66,5 @@ Then visit `http://localhost:8000`.
 
 ## Deployment
 
-Push to the `main` branch of this repository — GitHub Pages publishes
+Push to the `main` branch of this repository. GitHub Pages publishes
 `https://for1337.github.io` automatically from the root.
-
-## Credits
-
-- Identity card "kubectl" line: just for the vibe.
-- Icons: inline SVG, no external dependency.
