@@ -758,3 +758,50 @@ body.rotate-locked {
   position: fixed;
   inset: 0;
 }
+
+/* 12. Fullscreen hint (smartphone landscape only).
+       Appears after the user has rotated to landscape and the
+       rotate overlay has been dismissed. Disappears once the user
+       taps anywhere (the tap also triggers requestFullscreen()).
+       Non-interactive: pointer-events: none so the tap reaches the
+       underlying content / link. */
+.fullscreen-hint {
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0) + 16px);
+  transform: translateX(-50%);
+  z-index: 90000;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  animation: fullscreen-hint-pulse 2.4s ease-in-out infinite;
+}
+.fullscreen-hint[hidden] { display: none; }
+.fullscreen-hint-icon {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+}
+.fullscreen-hint-icon svg {
+  width: 100%;
+  height: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fullscreen-hint { animation: none; }
+}
+@keyframes fullscreen-hint-pulse {
+  0%, 100% { opacity: 0.88; transform: translateX(-50%) scale(1); }
+  50%      { opacity: 1;    transform: translateX(-50%) scale(1.05); }
+}

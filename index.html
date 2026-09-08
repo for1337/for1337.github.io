@@ -56,6 +56,17 @@
   </div>
 </div>
 
+<!-- Fullscreen hint: shown only in landscape on smartphone until the
+     user taps anywhere to enter fullscreen. Web fullscreen requires a
+     user gesture on every browser (iOS Safari most strictly), so the
+     first tap is what triggers document.documentElement.requestFullscreen(). -->
+<div id="fullscreen-hint" class="fullscreen-hint" hidden aria-live="polite">
+  <span class="fullscreen-hint-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9V3h6"/><path d="M21 9V3h-6"/><path d="M3 15v6h6"/><path d="M21 15v6h-6"/></svg>
+  </span>
+  <span class="fullscreen-hint-text">Tap for fullscreen</span>
+</div>
+
 <header class="topbar">
   <div class="topbar-inner">
     <a class="brand" href="#top">leonardo<span class="dot">.</span>forconi</a>

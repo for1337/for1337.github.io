@@ -96,19 +96,21 @@
   // No "continue anyway" button: the spec is forced landscape.
 
   const rotateOverlay = document.getElementById('rotate-overlay');
+  const fullscreenHint = document.getElementById('fullscreen-hint');
+
+  // matchMedia('(orientation: portrait)') is the modern API but
+  // isn't supported on every WebView (e.g. older iOS Safari).
+  // Fall back to comparing innerWidth vs innerHeight.
+  const mqPortrait =
+    window.matchMedia && window.matchMedia('(orientation: portrait)');
+
+  // Treat anything with the short side <= 500 CSS px as a
+  // smartphone. Tablets in portrait (typically >500 on the
+  // short side) keep the desktop layout.
+  const isPhone = () => Math.min(window.innerWidth, window.innerHeight) <= 500;
+  const isPortrait = () => window.innerHeight > window.innerWidth;
+
   if (rotateOverlay) {
-    // matchMedia('(orientation: portrait)') is the modern API but
-    // isn't supported on every WebView (e.g. older iOS Safari).
-    // Fall back to comparing innerWidth vs innerHeight.
-    const mqPortrait =
-      window.matchMedia && window.matchMedia('(orientation: portrait)');
-
-    // Treat anything with the short side <= 500 CSS px as a
-    // smartphone. Tablets in portrait (typically >500 on the
-    // short side) keep the desktop layout.
-    const isPhone = () => Math.min(window.innerWidth, window.innerHeight) <= 500;
-    const isPortrait = () => window.innerHeight > window.innerWidth;
-
     const reduceMotion = window.matchMedia &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const icon = rotateOverlay.querySelector('.rotate-overlay-icon');
@@ -123,8 +125,83 @@
       };
       animateIcon();
     }
+  }
 
-    const updateRotate = () => {
+  // ---------- Fullscreen on landscape (smartphone only) ----------
+  // iOS Safari and most Android browsers require a user gesture
+  // before requestFullscreen() is allowed. Strategy:
+  //   - in landscape, on a phone, show a "Tap for fullscreen" hint
+  //   - first user pointerdown / touchstart triggers requestFullscreen
+  //   - exiting fullscreen manually (gesture, ESC, etc.) hides the
+  //     hint for a few seconds so we don't immediately re-prompt
+  //   - rotating back to portrait always exits fullscreen and hides
+  //     the hint
+  let lastFullscreenExitAt = 0;
+
+  const isFullscreen = () =>
+    !!(document.fullscreenElement || document.webkitFullscreenElement);
+
+  const requestFullscreen = (el) => {
+    const fn = el.requestFullscreen || el.webkitRequestFullscreen;
+    if (!fn) return Promise.reject(new Error('Fullscreen API unsupported'));
+    try {
+      const result = fn.call(el);
+      // Webkit returns void instead of a Promise; normalize.
+      return result && typeof result.then === 'function'
+        ? result
+        : Promise.resolve();
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  };
+
+  const exitFullscreen = () => {
+    const fn = document.exitFullscreen || document.webkitExitFullscreen;
+    if (!fn) return;
+    try { fn.call(document); } catch {}
+  };
+
+  const onUserGesture = (e) => {
+    // Don't trigger when tapping inside the rotate overlay itself —
+    // that overlay blocks the page anyway, and the tap is meant
+    // to rotate the device, not enter fullscreen.
+    if (rotateOverlay && !rotateOverlay.hidden) return;
+    if (!isPhone() || isPortrait()) return;
+    if (isFullscreen()) return;
+    // Don't re-prompt right after the user just exited fullscreen.
+    if (Date.now() - lastFullscreenExitAt < 4000) return;
+
+    requestFullscreen(document.documentElement)
+      .then(() => { /* fullscreen is now active; hint will be hidden by fullscreenchange */ })
+      .catch(() => { /* user denied or API not allowed */ });
+  };
+
+  document.addEventListener('pointerdown', onUserGesture, { passive: true });
+  document.addEventListener('touchstart', onUserGesture, { passive: true });
+
+  const onFullscreenChange = () => {
+    if (!isFullscreen()) {
+      // Mark the moment of exit so the next tap (after a 4s cooldown)
+      // can try fullscreen again, instead of getting immediately
+      // re-prompted by the now-visible hint.
+      lastFullscreenExitAt = Date.now();
+    }
+  };
+  document.addEventListener('fullscreenchange', onFullscreenChange);
+  document.addEventListener('webkitfullscreenchange', onFullscreenChange);
+
+  const updateFullscreenHint = () => {
+    if (!fullscreenHint) return;
+    const inCooldown = Date.now() - lastFullscreenExitAt < 4000;
+    const show = isPhone() && !isPortrait() && !isFullscreen() && !inCooldown;
+    if (show) fullscreenHint.removeAttribute('hidden');
+    else fullscreenHint.setAttribute('hidden', '');
+  };
+
+  // ---------- Combined update: rotate overlay + fullscreen hint ----------
+
+  const updateViewport = () => {
+    if (rotateOverlay) {
       const shouldShow = isPhone() && isPortrait();
       if (shouldShow) {
         rotateOverlay.removeAttribute('hidden');
@@ -133,25 +210,31 @@
         rotateOverlay.setAttribute('hidden', '');
         document.body.classList.remove('rotate-locked');
       }
-    };
-
-    // resize fires on rotation (Chrome, Firefox). orientationchange
-    // fires on Safari. Listen to both for safety. matchMedia change
-    // event is the modern preferred path (Chrome 81+).
-    window.addEventListener('resize', updateRotate);
-    window.addEventListener('orientationchange', () => {
-      // Delay one frame: some Android WebViews fire
-      // orientationchange BEFORE the new innerWidth/innerHeight
-      // values are written. Reading them next tick is safer.
-      requestAnimationFrame(updateRotate);
-    });
-    if (mqPortrait) {
-      if (mqPortrait.addEventListener) {
-        mqPortrait.addEventListener('change', updateRotate);
-      } else if (mqPortrait.addListener) {
-        mqPortrait.addListener(updateRotate);
-      }
     }
-    updateRotate();
+    // Going back to portrait: always leave fullscreen so the browser
+    // chrome and orientation are restored.
+    if (isPhone() && isPortrait() && isFullscreen()) {
+      exitFullscreen();
+    }
+    updateFullscreenHint();
+  };
+
+  // resize fires on rotation (Chrome, Firefox). orientationchange
+  // fires on Safari. Listen to both for safety. matchMedia change
+  // event is the modern preferred path (Chrome 81+).
+  window.addEventListener('resize', updateViewport);
+  window.addEventListener('orientationchange', () => {
+    // Delay one frame: some Android WebViews fire
+    // orientationchange BEFORE the new innerWidth/innerHeight
+    // values are written. Reading them next tick is safer.
+    requestAnimationFrame(updateViewport);
+  });
+  if (mqPortrait) {
+    if (mqPortrait.addEventListener) {
+      mqPortrait.addEventListener('change', updateViewport);
+    } else if (mqPortrait.addListener) {
+      mqPortrait.addListener(updateViewport);
+    }
   }
+  updateViewport();
 })();
