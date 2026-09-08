@@ -702,3 +702,59 @@ h1.name .em { color: var(--ink-2); font-weight: 400; font-style: italic; }
 
 .nav a.is-active { color: var(--ink); }
 .nav a.is-active::after { transform: scaleX(1); }
+
+/* 11. Rotate overlay (smartphone portrait only).
+       `hidden` attribute hides via display:none; JS removes the
+       attribute on resize / orientationchange when the device
+       rotates to landscape. No "continue anyway" button —
+       forced landscape per the spec. */
+.rotate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: var(--bg);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  text-align: center;
+}
+.rotate-overlay[hidden] { display: none; }
+.rotate-overlay-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  max-width: 320px;
+}
+.rotate-overlay-icon {
+  width: 96px;
+  height: 96px;
+  color: var(--accent);
+  /* gentle rotation hint: 0° -> -90° -> 0° in 2.4s. Lives in
+     the JS via setProperty so it respects prefers-reduced-motion. */
+}
+.rotate-overlay-title {
+  font-family: var(--sans);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin: 0;
+}
+.rotate-overlay-desc {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 0;
+}
+/* Body scroll lock when overlay is visible. JS toggles this. */
+body.rotate-locked {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  inset: 0;
+}
