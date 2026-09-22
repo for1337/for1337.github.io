@@ -1,7 +1,7 @@
 # for1337.github.io
 
 Personal site for **Leonardo Forconi** — DevOps & Site Reliability Engineer.
-Florence, Italy. Ten years operating critical infrastructure for payment,
+Rotterdam, NL. Ten years operating critical infrastructure for payment,
 energy, and regulated environments. **Open to senior remote / hybrid roles.**
 
 ## Stack

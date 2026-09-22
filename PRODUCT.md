@@ -9,7 +9,7 @@
 | --- | --- |
 | Name | Leonardo Forconi |
 | Handle | `@for1337` (GitHub) / `linkedin.com/in/forconi` (LinkedIn) |
-| Based | Florence, Italy (UTC+1 / UTC+2 DST) |
+| Based | Rotterdam, NL (UTC+1 / UTC+2 DST) |
 | Tenure | 10+ years in IT operations |
 | Current role | Cyber Security Engineer @ Leonardo S.p.A. (since 2025) |
 | Education | BSc Computer Engineering @ Universitas Mercatorum (in progress, since 2026) |
