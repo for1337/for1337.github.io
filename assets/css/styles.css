@@ -839,6 +839,26 @@ h1.name .em { color: var(--ink-2); font-weight: 400; font-style: italic; }
   flex-shrink: 0;
 }
 .hero-now .now-text { color: var(--ink-2); }
+.hero-now .now-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+.hero-now .now-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px;
+  align-items: baseline;
+  color: var(--ink-2);
+}
+.hero-now .now-row .k {
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 10.5px;
+}
 .hero-now time { color: var(--ink); font-feature-settings: "tnum"; }
 
 /* Anti-template-y "P.S." personal note in About */
@@ -858,6 +878,39 @@ h1.name .em { color: var(--ink-2); font-weight: 400; font-style: italic; }
 .prose p.ps b {
   color: var(--ink);
   font-weight: 500;
+}
+.prose p.ps.pps {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: none;
+  color: var(--ink-3);
+  font-size: 12px;
+}
+.prose p.ps.pps::first-letter { color: var(--ink-2); }
+
+/* Career #1 — postmortem bullet, set apart from achievement bullets */
+.role-bullets li.postmortem {
+  margin-top: 6px;
+  padding: 12px 14px 12px 18px;
+  border-left: 2px solid var(--accent);
+  background: var(--bg-soft);
+  color: var(--ink-2);
+  font-style: italic;
+}
+.role-bullets li.postmortem::before { display: none; }
+.role-bullets li.postmortem b { color: var(--ink); font-weight: 500; font-style: normal; }
+
+/* Stack table — "Last in prod" column. Real data, breaks template symmetry. */
+.stack thead th.used-col,
+.stack tbody td.used {
+  width: 90px;
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  font-feature-settings: "tnum";
 }
 
 /* 12. Footer */
@@ -898,6 +951,9 @@ h1.name .em { color: var(--ink-2); font-weight: 400; font-style: italic; }
   .svc { grid-template-columns: 44px 1fr; gap: 16px; }
   .stack tbody td:first-child { width: 38%; }
   .stack tbody td:last-child { width: 70px; }
+  .stack thead th.used-col,
+  .stack tbody td.used { display: none; }
+  .hero-now .now-row { grid-template-columns: 90px 1fr; gap: 10px; }
   .role { grid-template-columns: 90px 1fr; gap: 20px; padding: 22px 0; }
   .career-meta { grid-template-columns: 1fr; gap: 32px; }
   .edu { grid-template-columns: 80px 1fr; gap: 12px; }

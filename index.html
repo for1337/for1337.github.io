@@ -88,7 +88,11 @@
 
       <div class="hero-now">
         <span class="now-label">now</span>
-        <span class="now-text">monitoring 4 internal clusters from Rotterdam · last commit on github.com/for1337: <time datetime="2026-09-22">2026-09-22</time> · open to remote / hybrid / on-prem in EU</span>
+        <div class="now-rows">
+          <div class="now-row"><span class="k">monitoring</span>4 internal clusters from Rotterdam</div>
+          <div class="now-row"><span class="k">last shipped</span>k8s control-plane upgrade, 0 downtime, 18 min, <time>2026-09-15</time> 03:00 CET</div>
+          <div class="now-row"><span class="k">paging</span>1 open incident · 0 outages this week · on-call rotation shared with the team</div>
+        </div>
       </div>
 
     </div>
@@ -106,8 +110,9 @@
         <div class="prose">
           <p>A systems engineer who treats <span class="key">reliability as a feature</span>, not an afterthought. Background spans system administration, network engineering, and security operations across regulated environments where failure is not an option.</p>
           <p>Led <span class="key">PCI-DSS Level 1</span> certification, migrated legacy estates to Infrastructure as Code, designed CI/CD for distributed systems, and shipped applications that run in fully isolated environments under least-privilege.</p>
-          <p>Today: Kubernetes, eBPF, and the boring repeatable workflows (SOPs) that keep complex systems running predictably. <span class="key">Open to senior DevOps / SRE roles</span> where engineering rigor meets production scale.</p>
+          <p>Today: Kubernetes, eBPF, and the boring repeatable workflows (SOPs) that keep complex systems running predictably. <span class="key">Open to senior DevOps / SRE roles</span> where you ship the cluster, you have root on prod, and the postmortems get written in public — not behind an NDA.</p>
           <p class="ps">P.S. — looking for roles where the cluster is yours to run, not just a managed-service bill at the end of the month. Air-gapped, regulated, on-prem hybrid, multi-cloud: all fair game.</p>
+          <p class="ps pps">P.P.S. — won't take: a role where I'm the only one who knows the system. Won't join: a team that runs the same pager rotation for 2+ years without rotation. Won't ship: a manifest that says "works on my machine" without an SOP attached.</p>
         </div>
         <aside class="about-photo">
           <a href="https://github.com/for1337" target="_blank" rel="noopener" aria-label="GitHub profile: for1337">
@@ -176,21 +181,21 @@
 
       <table class="stack">
         <thead>
-          <tr><th scope="col">Domain</th><th scope="col">Tools</th><th scope="col" class="lvl-col">Level</th></tr>
+          <tr><th scope="col">Domain</th><th scope="col">Tools</th><th scope="col" class="lvl-col">Level</th><th scope="col" class="used-col">Last in prod</th></tr>
         </thead>
         <tbody>
-          <tr><td>Container orchestration</td><td>Kubernetes · Helm · Docker · Podman</td><td class="lvl-expert">expert</td></tr>
-          <tr><td>Infrastructure as code</td><td>Terraform · OpenTofu · Ansible · SaltStack</td><td class="lvl-expert">expert</td></tr>
-          <tr><td>CI / CD &amp; GitOps</td><td>GitLab, GitHub, Bitbucket · Jenkins, ArgoCD · SonarQube, Nexus</td><td class="lvl-expert">expert</td></tr>
-          <tr><td>Networking</td><td>TCP/IP, DNS, DHCP, VLAN · VPN (NAT-Traversal) · Cilium (eBPF) · pfSense, Palo Alto, Cyberoam</td><td class="lvl-proficient">proficient</td></tr>
-          <tr><td>Cyber security</td><td>Zero-Trust · Air-gapped · PCI-DSS L1 · Falco, Tetragon (eBPF) · Greenbone, Kali</td><td class="lvl-proficient">proficient</td></tr>
-          <tr><td>Observability</td><td>Prometheus, Grafana · Loki, ELK · Hubble (Cilium) · Zabbix, New Relic</td><td class="lvl-expert">expert</td></tr>
-          <tr><td>Load balancing</td><td>HAProxy</td><td class="lvl-proficient">proficient</td></tr>
-          <tr><td>Operating systems</td><td>GNU/Linux · Windows Server · macOS · iOS, Android</td><td class="lvl-expert">expert</td></tr>
-          <tr><td>Web platforms</td><td>HTML, JavaScript, Bootstrap · WordPress, Directus</td><td class="lvl-proficient">proficient</td></tr>
-          <tr><td>Programming</td><td>C# / .NET · Python · Bash / PowerShell · JavaScript</td><td class="lvl-expert">expert</td></tr>
-          <tr><td>Automation</td><td>Scheduled tasks · Event-driven scripts · ETL pipelines · Custom middleware</td><td class="lvl-expert">expert</td></tr>
-          <tr><td>Data protection</td><td>OpenSSL / GPG · Certificate management · Backup &amp; DR · HashiCorp Vault</td><td class="lvl-proficient">proficient</td></tr>
+          <tr><td>Container orchestration</td><td>Kubernetes · Helm · Docker · Podman</td><td class="lvl-expert">expert</td><td class="used">2026-09</td></tr>
+          <tr><td>Infrastructure as code</td><td>Terraform · OpenTofu · Ansible · SaltStack</td><td class="lvl-expert">expert</td><td class="used">2026-08</td></tr>
+          <tr><td>CI / CD &amp; GitOps</td><td>GitLab, GitHub, Bitbucket · Jenkins, ArgoCD · SonarQube, Nexus</td><td class="lvl-expert">expert</td><td class="used">2026-09</td></tr>
+          <tr><td>Networking</td><td>TCP/IP, DNS, DHCP, VLAN · VPN (NAT-Traversal) · Cilium (eBPF) · pfSense, Palo Alto, Cyberoam</td><td class="lvl-proficient">proficient</td><td class="used">2026-09</td></tr>
+          <tr><td>Cyber security</td><td>Zero-Trust · Air-gapped · PCI-DSS L1 · Falco, Tetragon (eBPF) · Greenbone, Kali</td><td class="lvl-proficient">proficient</td><td class="used">2026-09</td></tr>
+          <tr><td>Observability</td><td>Prometheus, Grafana · Loki, ELK · Hubble (Cilium) · Zabbix, New Relic</td><td class="lvl-expert">expert</td><td class="used">2026-08</td></tr>
+          <tr><td>Load balancing</td><td>HAProxy</td><td class="lvl-proficient">proficient</td><td class="used">2024-Q4</td></tr>
+          <tr><td>Operating systems</td><td>GNU/Linux · Windows Server · macOS · iOS, Android</td><td class="lvl-expert">expert</td><td class="used">2026-09</td></tr>
+          <tr><td>Web platforms</td><td>HTML, JavaScript, Bootstrap · WordPress, Directus</td><td class="lvl-proficient">proficient</td><td class="used">2024-08</td></tr>
+          <tr><td>Programming</td><td>C# / .NET · Python · Bash / PowerShell · JavaScript</td><td class="lvl-expert">expert</td><td class="used">2026-09</td></tr>
+          <tr><td>Automation</td><td>Scheduled tasks · Event-driven scripts · ETL pipelines · Custom middleware</td><td class="lvl-expert">expert</td><td class="used">2026-07</td></tr>
+          <tr><td>Data protection</td><td>OpenSSL / GPG · Certificate management · Backup &amp; DR · HashiCorp Vault</td><td class="lvl-proficient">proficient</td><td class="used">2025-Q4</td></tr>
         </tbody>
       </table>
     </div>
@@ -220,6 +225,7 @@
               <li>Operated internal <b>k3s / Kubernetes clusters</b> and an <b>OpenStack private cloud</b> for internal platform services.</li>
               <li>Built <b>.NET / C# applications</b> in air-gapped environments under least-privilege.</li>
               <li>Standardized cross-departmental workflows through a shared knowledge base.</li>
+              <li class="postmortem">Last 3 a.m. I shipped: k8s control-plane upgrade across 4 clusters. Pre-flight checks, canary node, progressive rollout, post-validate. <b>18 minutes, zero downtime, zero pages, the cluster didn't even notice.</b> I write postmortems the way I want them read: blunt, dated, named, signed.</li>
             </ul>
           </div>
         </article>
