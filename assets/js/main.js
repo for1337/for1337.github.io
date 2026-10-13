@@ -1,74 +1,50 @@
 /* ----------------------------------------------------------------
-   for1337.github.io — v11
-   Single-file JavaScript. No dependencies. No build step.
+   for1337.github.io — v12 main.js
 
-   - Theme toggle (light default · dark via data-theme)
-   - Active nav link tracking
-   - Smooth scroll for in-page anchors
+   Minimal: smooth scroll for hash links (browsers handle scroll-behavior
+   already but we add a header offset compensation), and an active
+   state for topbar actions when hovering/focusing a section.
+
+   No theme toggle, no IntersectionObserver, no animation triggers.
+   Dark-only design (matches leonardoforconi.com v3).
    ---------------------------------------------------------------- */
 
-(() => {
+(function () {
   'use strict';
 
-  const root = document.documentElement;
+  // Smooth scroll for in-page anchor links, accounting for sticky topbar height.
+  var topbar = document.querySelector('.topbar');
+  var topbarH = topbar ? topbar.offsetHeight : 0;
 
-  /* ---------- Theme toggle --------------------------------------- */
-
-  const STORAGE_KEY = 'forconi-theme';
-  const toggle = document.getElementById('theme-toggle');
-
-  const prefersDark = window.matchMedia &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const stored = (() => {
-    try { return localStorage.getItem(STORAGE_KEY); } catch { return null; }
-  })();
-
-  const initial = stored || (prefersDark ? 'dark' : 'light');
-  root.setAttribute('data-theme', initial);
-
-  if (toggle) {
-    toggle.addEventListener('click', () => {
-      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem(STORAGE_KEY, next); } catch {}
-    });
-  }
-
-  /* ---------- Active nav link tracking --------------------------- */
-
-  const navLinks = document.querySelectorAll('.nav a[href^="#"]');
-  const sections = Array.from(navLinks)
-    .map(link => document.querySelector(link.getAttribute('href')))
-    .filter(Boolean);
-
-  if (sections.length && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const id = '#' + entry.target.id;
-            navLinks.forEach(link => {
-              link.classList.toggle('is-active', link.getAttribute('href') === id);
-            });
-          }
-        });
-      },
-      { rootMargin: '-30% 0px -65% 0px', threshold: 0 }
-    );
-    sections.forEach(s => observer.observe(s));
-  }
-
-  /* ---------- Smooth scroll for in-page links ------------------- */
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-      if (!href || !href.startsWith('#')) return;
-      const target = document.querySelector(href);
-      if (!target) return;
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      if (history.replaceState) history.replaceState(null, '', href);
-    });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href === '#' || href.length < 2) return;
+    var id = href.slice(1);
+    var target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    var y = target.getBoundingClientRect().top + window.pageYOffset - (topbarH + 12);
+    window.scrollTo({ top: y, behavior: 'smooth' });
+    history.replaceState(null, '', '#' + id);
   });
+
+  // Lightweight topbar CTAs pulse on visibility: add a class when the page
+  // is scrolled past the hero, so the "Get in touch" CTA gets a subtle
+  // border-strong treatment.
+  var cta = document.querySelector('.actions .cta');
+  var hero = document.querySelector('.hero');
+  if (cta && hero && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          cta.classList.remove('is-past');
+        } else {
+          cta.classList.add('is-past');
+        }
+      });
+    }, { rootMargin: '-80px 0px 0px 0px', threshold: 0 });
+    io.observe(hero);
+  }
 })();
