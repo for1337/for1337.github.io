@@ -91,57 +91,14 @@ em, .italic { font-style: italic; font-weight: 400; color: var(--bone-2); }
   padding: 0 var(--pad);
 }
 
-/* ---- Preloader marquee (albertomacherelli.com style) ------- */
+/* ---- Hero entrance animation (replaces the removed preloader) */
 
-.preloader {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: grid;
-  place-items: center;
-  background: var(--ink);
-  color: var(--bone-2);
-  transition: opacity .6s var(--ease), visibility .6s var(--ease);
-  overflow: hidden;
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-.preloader.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-.preloader-marquee-mask {
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  padding: 18px 0;
-}
-.preloader-marquee {
-  display: inline-block;
-  white-space: nowrap;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(60px, 14vw, 180px);
-  letter-spacing: -0.01em;
-  line-height: 1;
-  color: var(--bone);
-  animation: preloader-scroll 8s linear infinite;
-}
-.preloader-marquee.stroked {
-  color: transparent;
-  -webkit-text-stroke: 1px var(--bone-3);
-  margin-top: 4px;
-  animation-direction: reverse;
-  animation-duration: 10s;
-}
-@keyframes preloader-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.preloader-progress {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  background: var(--accent);
-  width: 0%;
-  transition: width .3s var(--ease);
-}
+.hero .hero-text { animation: hero-rise .9s var(--ease-out) .1s both; }
+.hero .hero-photo { animation: hero-rise .9s var(--ease-out) .3s both; }
 
 /* ---- Topbar ------------------------------------------------- */
 
@@ -826,7 +783,7 @@ em, .italic { font-style: italic; font-weight: 400; color: var(--bone-2); }
 
 @media (prefers-reduced-motion: reduce) {
   .pulse { animation: none; }
-  .preloader { display: none; }
+  .hero .hero-text, .hero .hero-photo { animation: none; opacity: 1; transform: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   * { scroll-behavior: auto !important; }
 }
