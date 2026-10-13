@@ -66,32 +66,36 @@ import * as THREE from 'three';
   const grid = new THREE.GridHelper(gridSize, gridDivs, ACCENT, ACCENT_FAINT);
   grid.position.y = -2;
   grid.material.transparent = true;
-  grid.material.opacity = 0.6;
+  grid.material.opacity = 0.4;
   scene.add(grid);
 
   // a second grid offset half a cell for visual depth
   const grid2 = new THREE.GridHelper(gridSize, gridDivs, ACCENT_FAINT, ACCENT_FAINT);
   grid2.position.y = -2.001;
+  grid2.material.transparent = true;
+  grid2.material.opacity = 0.3;
   scene.add(grid2);
 
-  // ----- floating wireframe boxes -----
+  // ----- floating wireframe boxes (kept at the edges, not over the content) -----
   const boxes = [];
-  const boxCount = 7;
+  const boxCount = 5;
   const boxGeom = new THREE.BoxGeometry(1, 1, 1);
   const boxEdges = new THREE.EdgesGeometry(boxGeom);
   for (let i = 0; i < boxCount; i++) {
     const mat = new THREE.LineBasicMaterial({
       color: ACCENT,
       transparent: true,
-      opacity: 0.35 + Math.random() * 0.25
+      opacity: 0.18 + Math.random() * 0.12
     });
     const line = new THREE.LineSegments(boxEdges, mat);
-    const scale = 0.6 + Math.random() * 0.9;
+    const scale = 0.5 + Math.random() * 0.7;
     line.scale.set(scale, scale, scale);
+    // Push boxes to the sides: x in [-12..-6] U [+6..+12]
+    const side = Math.random() < 0.5 ? -1 : 1;
     line.position.set(
-      (Math.random() - 0.5) * 22,
+      side * (6 + Math.random() * 6),
       Math.random() * 4 - 0.5,
-      (Math.random() - 0.5) * 8
+      (Math.random() - 0.5) * 6
     );
     line.userData = {
       baseY: line.position.y,
@@ -107,9 +111,9 @@ import * as THREE from 'three';
   const shellEdges = new THREE.EdgesGeometry(shellGeom);
   const shell = new THREE.LineSegments(
     shellEdges,
-    new THREE.LineBasicMaterial({ color: ACCENT_DIM, transparent: true, opacity: 0.5 })
+    new THREE.LineBasicMaterial({ color: ACCENT_DIM, transparent: true, opacity: 0.25 })
   );
-  shell.position.set(-6, 2, -8);
+  shell.position.set(-7, 2, -10);
   scene.add(shell);
 
   // ----- resize -----
