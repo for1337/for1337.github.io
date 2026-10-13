@@ -125,11 +125,11 @@ body {
 .hero .wrap {
   position: relative;
   z-index: 1;
-  background-color: var(--bg);
-  background-image: linear-gradient(180deg, rgba(20, 25, 22, 0.96) 0%, rgba(10, 10, 10, 0.98) 100%);
-  border: 1px solid var(--accent-dim, #1a3d2a);
-  border-left: 2px solid var(--accent);
+  background-color: #0a0a0a;
+  border: 1px solid var(--accent);
+  border-left: 3px solid var(--accent);
   padding: 32px 32px 28px;
+  box-shadow: 0 0 0 1px #0a0a0a, 0 0 32px rgba(90, 247, 142, 0.04);
 }
 
 @media (prefers-reduced-motion: reduce) {
