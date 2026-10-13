@@ -46,13 +46,19 @@
       }, wait);
     }
 
-    if (document.readyState === 'complete') {
+    function ready() {
+      // Trigger on DOMContentLoaded (or immediately if already past it).
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', ready, { once: true });
+        return;
+      }
       hide();
-    } else {
-      window.addEventListener('load', hide, { once: true });
-      // Failsafe: never let preloader block more than 3.5s.
-      setTimeout(hide, 3500);
     }
+
+    // Race: window.load (best) | DOMContentLoaded (good) | 2.5s failsafe
+    ready();
+    window.addEventListener('load', hide, { once: true });
+    setTimeout(hide, 2500);
   }
 
   // ---- Reveal on scroll (simple, no IO throttle traps) -------
