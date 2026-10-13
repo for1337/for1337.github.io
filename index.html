@@ -29,6 +29,13 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
 
 <link rel="stylesheet" href="/assets/css/styles.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+  }
+}
+</script>
 </head>
 <body>
 
@@ -51,6 +58,7 @@
 
 <!-- HERO ==================================================================== -->
 <section class="hero" id="top">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="wrap">
 
     <pre class="prompt-line" aria-hidden="true"><span class="prompt">$</span> leonardo --resume</pre>
@@ -60,7 +68,7 @@
       <div class="row"><dt>role</dt><dd>DevOps &amp; Site Reliability Engineer</dd></div>
       <div class="row"><dt>based</dt><dd>Rotterdam, NL <span class="dim">·</span> remote-first <span class="dim">(UTC+1 / +2)</span></dd></div>
       <div class="row"><dt>status</dt><dd class="v-green">[BASED IN ROTTERDAM, NL]</dd></div>
-      <div class="row"><dt>updated</dt><dd><time datetime="2026-10-13">2026-10-13</time> <span class="dim">·</span> <span class="v-tag">v8</span></dd></div>
+      <div class="row"><dt>updated</dt><dd><time datetime="2026-10-13">2026-10-13</time> <span class="dim">·</span> <span class="v-tag">v9</span></dd></div>
       <div class="row"><dt>linkedin</dt><dd><a class="l" href="https://www.linkedin.com/in/forconi" target="_blank" rel="noopener">linkedin.com/in/forconi</a></dd></div>
       <div class="row"><dt>github</dt><dd><a class="l" href="https://github.com/for1337" target="_blank" rel="noopener">github.com/for1337</a> <span class="dim">·</span> <span class="dim">photo:</span> <img class="avatar" src="https://github.com/for1337.png?size=80" alt="" width="20" height="20" loading="lazy"></dd></div>
     </dl>
@@ -316,11 +324,13 @@
 <footer class="foot">
   <div class="foot-line">────────────────────────────────────────────────────────────────────────</div>
   <pre class="foot-meta"><span class="comment"># © 2026 Leonardo Forconi · Rotterdam, NL · built by hand in vi,
-# deployed with git push · no frameworks, no analytics, no cookies</span>
+# deployed with git push · no analytics, no cookies
+# hero uses Three.js (MIT) for a wireframe 3D background</span>
 <span class="dim">$</span> cat VERSION
-v8 · last build 2026-10-13 · <a class="l" href="https://github.com/for1337/for1337.github.io" target="_blank" rel="noopener">source</a></pre>
+v9 · last build 2026-10-13 · <a class="l" href="https://github.com/for1337/for1337.github.io" target="_blank" rel="noopener">source</a></pre>
 </footer>
 
 <script src="/assets/js/main.js" defer></script>
+<script type="module" src="/assets/js/three-scene.js"></script>
 </body>
 </html>
