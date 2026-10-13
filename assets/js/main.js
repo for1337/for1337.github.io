@@ -1,18 +1,78 @@
 /* ----------------------------------------------------------------
-   for1337.github.io — v12 main.js
+   for1337.github.io — v13 main.js
 
-   Minimal: smooth scroll for hash links (browsers handle scroll-behavior
-   already but we add a header offset compensation), and an active
-   state for topbar actions when hovering/focusing a section.
+   - Preloader: shows until window load + a minimum 600ms, then fades
+   - Reveal: scroll-triggered fade-up for .reveal elements
+   - Smooth scroll for in-page anchor links
+   - Header CTA: subtle hover state
 
-   No theme toggle, no IntersectionObserver, no animation triggers.
-   Dark-only design (matches leonardoforconi.com v3).
+   Style reference: albertomacherelli.com (Colega theme).
    ---------------------------------------------------------------- */
 
 (function () {
   'use strict';
 
-  // Smooth scroll for in-page anchor links, accounting for sticky topbar height.
+  // ---- Preloader ---------------------------------------------
+  var preloader = document.getElementById('preloader');
+  var progress = document.getElementById('preloaderProgress');
+  var start = Date.now();
+  var minTime = 600;
+
+  function tick(p) {
+    if (progress) progress.style.width = Math.min(100, Math.max(0, p)) + '%';
+  }
+
+  if (preloader) {
+    // Animate progress bar over the min time even if everything is fast.
+    var pTimer = setInterval(function () {
+      var elapsed = Date.now() - start;
+      var ratio = Math.min(1, elapsed / 1200);
+      tick(ratio * 90);
+    }, 30);
+
+    function hide() {
+      var elapsed = Date.now() - start;
+      var wait = Math.max(0, minTime - elapsed);
+      clearInterval(pTimer);
+      tick(100);
+      setTimeout(function () {
+        if (preloader) preloader.classList.add('is-hidden');
+        // Remove from DOM after transition so it does not block tab key.
+        setTimeout(function () {
+          if (preloader && preloader.parentNode) {
+            preloader.parentNode.removeChild(preloader);
+          }
+        }, 700);
+      }, wait);
+    }
+
+    if (document.readyState === 'complete') {
+      hide();
+    } else {
+      window.addEventListener('load', hide, { once: true });
+      // Failsafe: never let preloader block more than 3.5s.
+      setTimeout(hide, 3500);
+    }
+  }
+
+  // ---- Reveal on scroll (simple, no IO throttle traps) -------
+  var revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.classList.add('is-visible');
+          io.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    // No IO support: reveal everything immediately.
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  // ---- Smooth scroll for hash links (compensate sticky topbar)
   var topbar = document.querySelector('.topbar');
   var topbarH = topbar ? topbar.offsetHeight : 0;
 
@@ -29,22 +89,4 @@
     window.scrollTo({ top: y, behavior: 'smooth' });
     history.replaceState(null, '', '#' + id);
   });
-
-  // Lightweight topbar CTAs pulse on visibility: add a class when the page
-  // is scrolled past the hero, so the "Get in touch" CTA gets a subtle
-  // border-strong treatment.
-  var cta = document.querySelector('.actions .cta');
-  var hero = document.querySelector('.hero');
-  if (cta && hero && 'IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          cta.classList.remove('is-past');
-        } else {
-          cta.classList.add('is-past');
-        }
-      });
-    }, { rootMargin: '-80px 0px 0px 0px', threshold: 0 });
-    io.observe(hero);
-  }
 })();
