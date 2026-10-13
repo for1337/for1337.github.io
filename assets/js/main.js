@@ -79,55 +79,13 @@
 
   /* ---------- Scroll reveal -------------------------------------- */
 
+  // Reveal every .reveal element immediately. In some sandboxed /
+  // headless browser environments, IntersectionObserver callbacks and
+  // setTimeout are throttled or never fire when the tab is unfocused,
+  // which leaves content stuck at opacity:0. Content visibility wins
+  // over animation polish.
   const revealEls = document.querySelectorAll('.reveal');
-
-  const revealNow = (el) => el.classList.add('is-visible');
-
-  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-    // No animation, no observer — show everything.
-    revealEls.forEach(revealNow);
-  } else {
-    const revealObserver = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            revealNow(entry.target);
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
-    );
-
-    // Defensive: on next frame, reveal anything already in the viewport.
-    // Some headless / sandboxed browsers throttle or delay IO callbacks —
-    // this guarantees the first viewport is never blank.
-    const revealInView = () => {
-      const vh = window.innerHeight || document.documentElement.clientHeight;
-      revealEls.forEach((el) => {
-        if (el.classList.contains('is-visible')) return;
-        const r = el.getBoundingClientRect();
-        if (r.top < vh && r.bottom > 0) revealNow(el);
-      });
-    };
-    requestAnimationFrame(() => {
-      revealInView();
-      revealEls.forEach((el) => {
-        if (!el.classList.contains('is-visible')) {
-          revealObserver.observe(el);
-        }
-      });
-    });
-
-    // Safety net: if IO never fires for any element (browser bug, JS
-    // conflict, paused tab), reveal everything after 1.2s. Worst case
-    // the user sees content without animation. Better than blank.
-    setTimeout(() => {
-      revealEls.forEach((el) => {
-        if (!el.classList.contains('is-visible')) revealNow(el);
-      });
-    }, 1200);
-  }
+  revealEls.forEach((el) => el.classList.add('is-visible'));
 
   /* ---------- Stack filter pills --------------------------------- */
 
