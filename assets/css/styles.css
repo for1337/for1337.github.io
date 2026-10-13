@@ -360,27 +360,32 @@ section > p + p { margin-top: 1em; }
 }
 .career-list > li {
   counter-increment: career;
-  padding: 20px 0 24px;
+  padding: 24px 0 28px;
   border-bottom: 1px solid var(--rule);
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  column-gap: 32px;
+  position: relative;
 }
 .career-list > li:last-child { border-bottom: 0; }
 .career-list > li::before {
   content: counter(career, decimal-leading-zero);
   position: absolute;
+  top: 26px;
+  left: -36px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-faint);
+  display: none;
 }
 .career-period {
   font-family: var(--font-mono);
   font-size: 13px;
   color: var(--accent);
-  margin: 0 0 4px;
+  margin: 0 0 6px;
   font-weight: 500;
+  letter-spacing: 0.02em;
 }
 .career-title {
   font-family: var(--font-serif);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 500;
   margin: 0 0 2px;
   color: var(--fg);
@@ -390,32 +395,14 @@ section > p + p { margin-top: 1em; }
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--fg-dim);
-  margin: 0 0 14px;
+  margin: 0 0 16px;
 }
 .career-body {
-  grid-column: 2;
   margin: 0;
   color: var(--fg);
-  font-size: 16px;
-  line-height: 1.6;
-}
-.career-period,
-.career-title,
-.career-org {
-  grid-column: 1;
-}
-.career-list > li {
-  position: relative;
-}
-.career-list > li::before {
-  content: counter(career, decimal-leading-zero);
-  position: absolute;
-  top: 22px;
-  left: -28px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--fg-faint);
-  display: none;
+  font-size: 17px;
+  line-height: 1.65;
+  max-width: 64ch;
 }
 
 /* ---- Education & languages ------------------------------------ */
@@ -560,20 +547,12 @@ button:focus-visible,
 
   .work-list,
   .stack-list,
-  .career-list > li,
   .edulang,
   .contact-list {
     grid-template-columns: 1fr;
     column-gap: 0;
     row-gap: 4px;
   }
-  .career-period,
-  .career-title,
-  .career-org,
-  .career-body {
-    grid-column: 1;
-  }
-  .career-body { margin-top: 8px; }
   .contact-list li { display: block; }
   .contact-list li .contact-label { display: block; margin-bottom: 2px; }
   .contact-list li a { display: inline-block; margin-top: 2px; }
