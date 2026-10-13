@@ -1,0 +1,30 @@
+# macOS / Windows noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node / build caches (future-proofing; not used today)
+node_modules/
+.cache/
+dist/
+
+# Local debug artifacts (mavis sessions, screenshots, commit-message scratchpads)
+# Pattern: any file starting with underscore is local-only session scratch.
+_*.html
+_*.json
+_*.ps1
+_*.txt
+_*.md
+_*.png
+_*.jpg
+_*.jpeg
+_*.gif
+_*.err
+_*.log
+_*.tmp
