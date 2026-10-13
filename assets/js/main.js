@@ -81,22 +81,52 @@
 
   const revealEls = document.querySelectorAll('.reveal');
 
+  const revealNow = (el) => el.classList.add('is-visible');
+
   if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-    // Skip animation — show everything.
-    revealEls.forEach(el => el.classList.add('is-visible'));
+    // No animation, no observer — show everything.
+    revealEls.forEach(revealNow);
   } else {
     const revealObserver = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
+            revealNow(entry.target);
             obs.unobserve(entry.target);
           }
         });
       },
       { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
     );
-    revealEls.forEach(el => revealObserver.observe(el));
+
+    // Defensive: on next frame, reveal anything already in the viewport.
+    // Some headless / sandboxed browsers throttle or delay IO callbacks —
+    // this guarantees the first viewport is never blank.
+    const revealInView = () => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      revealEls.forEach((el) => {
+        if (el.classList.contains('is-visible')) return;
+        const r = el.getBoundingClientRect();
+        if (r.top < vh && r.bottom > 0) revealNow(el);
+      });
+    };
+    requestAnimationFrame(() => {
+      revealInView();
+      revealEls.forEach((el) => {
+        if (!el.classList.contains('is-visible')) {
+          revealObserver.observe(el);
+        }
+      });
+    });
+
+    // Safety net: if IO never fires for any element (browser bug, JS
+    // conflict, paused tab), reveal everything after 1.2s. Worst case
+    // the user sees content without animation. Better than blank.
+    setTimeout(() => {
+      revealEls.forEach((el) => {
+        if (!el.classList.contains('is-visible')) revealNow(el);
+      });
+    }, 1200);
   }
 
   /* ---------- Stack filter pills --------------------------------- */
